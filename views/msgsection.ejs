@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+   background-color: rgb(37, 34, 34);
+   color: white;
+   position: relative;
+
+    }
+
+    .inputBox {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px
+    }
+
+    .inputBox input {
+        width: 70%;
+        padding: 10px 20px;
+        border-radius: 60px;
+        font-size: 20px;
+    }
+
+    .inputBox button {
+        font-size: 20px;
+        padding: 5px 20px;
+        border-radius: 50px;
+    }
+
+    .msgBox {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 90px 30px 120px 30px;
+        gap: 10px;
+
+    }
+
+    .receiverBox {
+
+   
+        align-self: flex-start;
+         
+    }
+
+
+
+    .box{
+ 
+        border-radius: 60px;
+        word-wrap: break-word;
+        width: auto;
+        height: auto;
+        border: 2px solid gray;
+        display: flex;
+        flex-direction: column;
+        padding: 10px 20px;
+
+    }
+    .senderBox {
+       
+        align-self: flex-end;
+
+ 
+
+    }
+
+
+
+
+    form input{
+     
+ 
+ 
+     border: 2px solid rgb(255, 255, 255);
+         background-color: rgb(37, 34, 34);
+         color: white;
+         
+ 
+    }
+
+    form button{
+ 
+         background-color: rgb(37, 34, 34);
+              
+         color: white;
+ 
+         cursor: pointer;
+ 
+
+    }
+ 
+
+
+
+
+ 
+
+
+
+
+ 
+  .nav{ width: 100%;
+        display: flex;
+        padding: 20px ;
+        justify-content: space-evenly;
+        align-items: center;
+        border: 2px solid rgb(235, 232, 232);
+        border-radius: 60px;
+        position:fixed;
+        top: 0px;
+      background-color: rgb(37, 34, 34);
+        
+    }
+    .nav a{
+
+    color: rgb(0, 247, 255);
+        text-decoration: none;
+
+    }
+
+ 
+ 
+ 
+      </style>
+<body>
+
+
+
+
+    <!-- nav bar section  -->
+
+    <div class="nav">
+
+        <a href="/profile" id="home">Home</a>
+        <a href="/logout"id="logout">Log OUt</a>
+    </div>
+
+
+
+
+
+    <div class="msgBox">
+
+
+        <% sender.msgSection.forEach((msgBox)=>{ %>
+
+
+
+            <% if(msgBox.group.user1===receiver.username || msgBox.group.user2===receiver.username){ %>
+
+
+
+                <% msgBox.message.forEach((val)=>{ %>
+
+
+                    <% if(val.user===sender.username) { %>
+
+                        <div class="senderBox box" >
+
+
+                            <p>
+                                <%=val.msg%>
+                            </p>
+
+
+                            <h5>
+                                <%=val.user%>
+                            </h5>
+                        </div>
+
+
+
+                        <% } else{ %>
+
+                            <div class="receiverBox box">
+
+
+                                <p>
+                                    <%=val.msg%>
+                                </p>
+
+
+                                <h5>
+                                    <%=val.user%>
+                                </h5>
+
+
+
+                            </div>
+
+
+
+
+
+
+                            <% } %>
+
+
+
+                                <% }) %>
+
+
+
+
+
+                                    <% } %>
+
+
+
+
+
+                                        <%}) %>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+    <form action="/sendMsg/<%=receiver._id%>" method="post" class="inputBox">
+        <input type="text" name="msg" id="" placeholder="Enter msg">
+        <button type="submit"> Send</button>
+    </form>
+
+
+
+    <script>
+            
+            //      let receiverid = "<%=receiver._id%>"
+
+
+            //tried to 
+            // setInterval(() => {
+                       
+                
+            //     const fun = async ()=>{
+
+
+            //         let res= await fetch(`/msgsection/${receiverid}`)
+            //         console.log(res.url);
+                   
+            //         window.location.href=res.url;
+
+
+            //     }
+            //     fun();
+
+            // }, 4000);
+
+
+  window.onload = ()=>{
+     
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
+
+    </script>
+</body>
+
+</html>

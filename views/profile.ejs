@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+<style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: gray;
+ 
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+      }
+
+      body {
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+        min-height: 90vh;
+        background-color: rgb(37, 34, 34);
+      }
+
+    .profileBox{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 20px;
+        flex-direction: column;
+    }
+
+    #logout{
+        align-self: flex-end;
+        color: rgb(0, 247, 255);
+        text-decoration: none;
+    }
+
+    #formBox{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+
+    }
+    form textarea{
+        width: 340px;
+        resize: none;
+        height: 100px;
+     border: 2px solid rgb(114, 111, 111);
+         background-color: rgb(37, 34, 34);
+         padding: 10px 10px;
+         font-size: 20px;
+    }
+
+    form button{
+     border: 2px solid rgb(114, 111, 111);
+         background-color: rgb(37, 34, 34);
+         padding: 10px 30px;
+         font-size: 20px;
+         cursor: pointer;
+         border-radius: 60px;
+
+    }
+
+
+
+    .container{
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        flex-direction: column;
+        gap:10px;
+        padding: 20px 0px;
+
+
+    }
+
+    #dp{
+        border-radius: 50%;
+    }
+
+    .contentBox{
+     border: 2px solid rgb(114, 111, 111);
+     border-radius: 30px;
+     
+        width: 350px;
+        height: auto;
+        word-wrap: break-word;
+        display: flex;
+       flex-direction: column;
+       padding: 20px 10px;
+        font-size: 20px;
+        gap: 20px;
+         
+
+    }
+
+    .icons{
+        display: flex;
+   
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+ 
+ 
+    
+    }
+
+    .icons img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
+}
+
+
+.icons > a,
+#counter a {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    #counter{
+       
+   
+        color: black;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3px;
+    
+
+    
+    }
+    #counter p{
+        font-size: 30px;
+        color: black;
+    }
+  
+
+a, button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a,button:hover{
+           
+    transform: scale(1.1);
+}
+
+
+   #alluser{
+      
+        color: rgb(0, 247, 255);
+        text-decoration: none;
+        margin-top: 10px;
+    }
+
+    
+
+ 
+
+
+
+ 
+  .nav{
+        display: flex;
+        padding: 20px ;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .nav a{
+
+    color: rgb(0, 247, 255);
+        text-decoration: none;
+
+    }
+
+ 
+ 
+ 
+      </style>
+<body>
+
+
+
+
+    <!-- nav bar section  -->
+
+    <div class="nav">
+
+        <a href="/profile" id="home">Home</a>
+        <a href="/logout"id="logout">Log OUt</a>
+    </div>
+        
+
+    <div class="profileBox">
+
+
+ 
+
+         <a href="/upload"  >
+
+             <img src="<%=user.pic%>" width="100px" height="100px"  id="dp">
+
+    
+            </a>
+            
+            <h1>Hello ! <%=user.username%></h1>
+             
+            <a href="/allUser" id="alluser">See All user</a>
+            
+        </div>
+        
+        
+        
+        
+
+    
+
+
+    <form action="/post", method="post" id="formBox">
+              
+        <textarea name="content" placeholder="What ! is in your mind..." id=""></textarea>
+        
+        <button type="submit">Post</button>
+        
+
+
+    </form>
+
+
+<div class="container">
+
+    
+    
+    
+    <% user.posts.reverse().forEach((post)=>{ %>
+
+
+         <div class="contentBox">
+
+             
+             <h2><%=user.username%></h2>
+       <p><%=post.content%></p>
+
+       <div class="icons">
+ <!-- <p><%=post.likes.length%> </p>  -->
+           <div id="counter" >
+
+               <p><%=post.likes.length%> </p>
+               <a href="/like/<%=post._id%>/profile" >  <img src="heart.png"  >  
+               </a>
+            </div>
+           <a href="/edit/<%=post._id%>">   <img src="edit.png"> </a>
+           <a href="/delete"><img src="delete.png"   ></a>
+        </div>
+       
+    </div>
+
+
+
+
+
+       <%    }) %>
+
+
+
+
+    </div>
+
+
+
+</body>
+</html>

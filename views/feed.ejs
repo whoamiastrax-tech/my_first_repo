@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+<style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: gray;
+ 
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+      }
+
+      body {
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+        min-height: 90vh;
+        background-color: rgb(37, 34, 34);
+      }
+
+ 
+    #logout{
+        align-self: flex-end;
+        color: rgb(0, 247, 255);
+        text-decoration: none;
+    }
+
+ 
+    .container{
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        flex-direction: column;
+        gap:10px;
+        padding: 20px 0px;
+
+
+    }
+
+  
+    .contentBox{
+     border: 2px solid rgb(114, 111, 111);
+     border-radius: 30px;
+     
+        width: 350px;
+        height: auto;
+        word-wrap: break-word;
+        display: flex;
+       flex-direction: column;
+       padding: 20px 10px;
+        font-size: 20px;
+        gap: 20px;
+         
+
+    }
+
+     
+   a{
+           color: rgb(0, 247, 255);
+        text-decoration: none;
+    }
+ 
+ 
+    #counter{
+       
+   
+        
+           color: rgb(0, 247, 255);
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    
+
+    
+    }
+   
+ 
+    
+ 
+
+
+ 
+    
+ 
+
+ 
+
+  .nav{
+        display: flex;
+        padding: 20px ;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .nav a{
+
+    color: rgb(0, 247, 255);
+        text-decoration: none;
+
+    }
+
+ 
+ 
+ 
+      </style>
+<body>
+
+
+
+
+    <!-- nav bar section  -->
+
+    <div class="nav">
+
+        <a href="/profile" id="home">Home</a>
+        <a href="/msgsection/<%=user._id%>" id="msg">Message to <%=user.username%></a>
+        <a href="/logout"id="logout">Log OUt</a>
+    </div>
+        
+
+    
+
+ 
+ 
+
+<div class="container">
+
+
+
+    
+    <% if(user.posts.length===0){ %>
+
+           <h2>No post yet</h2>
+    <%} %>
+    
+    <% user.posts.reverse().forEach((post)=>{ %>
+
+
+         <div class="contentBox">
+
+            
+            
+            
+
+             <h2><%=user.username%></h2>
+       <p><%=post.content%></p>
+
+       <div class="icons">
+ <!-- <p><%=post.likes.length%> </p>  -->
+
+           <div id="counter" >
+
+               <p><%=post.likes.length%> </p>
+               <a href="/like/<%=post._id%>/feed" >   like  
+               </a>
+            </div>
+ 
+        </div>
+       
+    </div>
+
+
+
+
+
+       <%    }) %>
+
+
+
+
+    </div>
+
+
+
+</body>
+</html>
